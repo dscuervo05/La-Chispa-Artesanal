@@ -1,0 +1,444 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.header-container {
+    padding: 0; 
+    display: flex;
+    justify-content: center; 
+    background-color: #f9f9f9;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    position: relative; 
+}
+
+.logo-container {
+    position: relative; 
+    width: 100%; 
+    max-width: 1200px; 
+    height: 300px; 
+    margin: 0;
+    display: block; 
+    overflow: hidden; 
+    perspective: 1000px; /* ¡Clave para que el efecto 3D se vea realista! */
+}
+
+.imagen-fondo {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    z-index: 1;
+}
+
+/* Combinamos todo en la misma clase que tiene la etiqueta <img> */
+.imagen-frente {
+    position: absolute; 
+    top: 50%; 
+    left: 15%; /* Excelente decisión moverlo a la izquierda para que no tape el centro del banner */
+    transform: translate(-50%, -50%); 
+    width: 400px; /* Te recomiendo darle un ancho fijo para que no se desproporcione al girar */
+    height: auto; 
+    z-index: 2;
+    object-fit: contain;
+    transform-style: preserve-3d;
+    
+    /* Agregamos la animación aquí */
+    animation: girar 4s infinite linear;
+}
+
+/* Animación ajustada para no perder el centrado (translate) mientras gira */
+@keyframes girar {
+    from {
+        transform: translate(-50%, -50%) rotateY(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotateY(360deg);
+    }
+}
+
+nav {
+    text-align: center; 
+    padding: 15px 0; 
+    background-color: #b3e0db;
+    border: 2px solid #000;
+    border-radius: 15px;
+    width: 80%;
+    margin: 20px auto;
+    transition: scale(1.05);  
+}
+
+nav a {
+    color: black;
+    margin: 0 20px; 
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s;
+    transition: scale(1.05); 
+}
+
+nav a:hover {
+    color: #1102be;
+    transition: scale(1.05);  
+}
+
+.buscador {
+    text-align: center; 
+    margin-top: 50px; 
+}
+
+.buscador input, .buscador button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px;
+}
+ article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px; 
+}
+label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+/* --- CONTENEDOR DEL CATÁLOGO --- */
+.contenedor-catalogo {
+    display: grid;
+    /* Crea 3 columnas de igual tamaño */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    width: 80%;
+    margin: 40px auto;
+}
+
+.tarjeta-producto {
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 15px; /* Bordes redondos para la tarjeta */
+    padding: 15px;
+    background-color: #fff;
+    transition: transform 0.3s;
+}
+
+.tarjeta-producto:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+.tarjeta-producto img {
+    width: 100%;       /* La imagen ocupa el ancho de la tarjeta */
+    height: 150px;
+    object-fit: cover; /* Evita que la imagen se deforme */
+    border-radius: 10px;
+}
+
+.somos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px; 
+}
+.somos img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+.somos p {
+    width: 60%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+}
+.index {
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    margin: 40px auto;
+}
+.index .vela {
+    width: 300px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+.index p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* --- ESTILOS DEL CARRUSEL AUTOMÁTICO --- */
+.carrusel-contenedor {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    margin: 0 auto 20px auto;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.foto-carrusel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Efecto de desvanecimiento suave */
+}
+
+.foto-carrusel.activo {
+    opacity: 1;
+}
+
+.info-inicio {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.info-inicio p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #333;
+}
+
+#formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* --- Añade estas dos líneas --- */
+    width: 90%;
+    max-width: 500px; 
+    margin: 50px auto; /* El 'auto' a los lados asegura que la caja entera se centre */
+    /* ----------------------------- */
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 30px; /* Un poco más de padding interno se ve más elegante */
+    background-color: #fff;
+    transition: transform 0.3s, box-shadow 0.3s; /* Añadimos la sombra a la transición */
+}
+
+#formulario label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 15px; /* Un poco de espacio extra arriba de cada etiqueta */
+}
+
+/* Un toque extra para que los campos de texto se vean mejor */
+#formulario input, #formulario textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 300px; /* Ancho uniforme para todos los campos */
+    max-width: 100%;
+}
+
+#formulario input[type="submit"], #formulario input[type="reset"] {
+    width: auto;
+    margin-top: 20px;
+    background-color: #b3e0db; /* Tu color morado */
+    color: black;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+/* --- ESTILOS PARA DETALLE DE PRODUCTOS (IMAGEN IZQ, INFO DER) --- */
+
+/* Contenedor que agrupa todas las tarjetas */
+.contenedor-detalles-productos {
+    width: 80%;
+    max-width: 1000px;
+    margin: 40px auto; /* Centra el bloque en la página */
+    display: flex;
+    flex-direction: column; /* Apila las tarjetas una debajo de otra */
+    gap: 30px; /* Espacio entre cada tarjeta de producto */
+}
+
+/* La Tarjeta de Producto Individual (La clave) */
+.tarjeta-producto-horizontal {
+    display: flex; /* Activa Flexbox: pone los hijos en fila (row) */
+    align-items: center; /* Centra verticalmente la imagen y el texto */
+    gap: 25px; /* Espacio entre la imagen y el bloque de texto */
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Sombra suave */
+    transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por la tarjeta */
+.tarjeta-producto-horizontal:hover {
+    transform: translateY(-5px); /* Se levanta un poco */
+    border-color: #0077ff; /* Cambia el borde a tu color de menú */
+}
+
+/* Contenedor de la Imagen */
+.imagen-producto-wrapper {
+    flex: 0 0 250px; /* No crece, no se encoge, ancho fijo de 250px */
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.imagen-producto-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción sin deformarse */
+}
+
+/* Contenedor de la Información (a la derecha) */
+.info-producto {
+    flex: 1; /* Ocupa todo el espacio sobrante a la derecha */
+    display: flex;
+    flex-direction: column; /* Apila título, p, y precio verticalmente */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.info-producto h2 {
+    margin: 0 0 10px 0; /* Espacio solo abajo */
+    font-size: 24px;
+    color: #000000;
+}
+
+.info-producto p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+    margin: 0 0 20px 0; /* Espacio para el precio abajo */
+}
+
+/* Sección del Precio */
+.bloque-precio {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.etiqueta-valor {
+    font-size: 14px;
+    color: #000000;
+    text-transform: uppercase;
+}
+
+.precio-producto {
+    font-size: 28px;
+    font-weight: bold;
+    color: #cc1bdd; /* Tu color morado distintivo */
+    margin: 0;
+}
+
+/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
+.btn-whatsapp {
+    position: fixed; /* Lo deja fijo en la pantalla */
+    bottom: 30px;    /* Separación desde abajo */
+    right: 30px;     /* Separación desde la derecha */
+    width: 60px;     /* Ancho del círculo */
+    height: 60px;    /* Alto del círculo */
+    background-color: #25d366; /* El color verde oficial de WhatsApp */
+    border-radius: 50%; /* Lo hace un círculo perfecto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra para resaltar */
+    z-index: 1000; /* Asegura que siempre esté por encima de tus fotos y menús */
+    transition: transform 0.3s ease;
+}
+
+.btn-whatsapp img {
+    width: 35px; /* Tamaño del ícono dentro del círculo */
+    height: 35px;
+}
+
+.btn-whatsapp:hover {
+    transform: scale(1.1); /* Efecto de crecimiento al pasar el mouse */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #a7eee8;
+    border-top: 1px solid #000000;
+    margin-top: 50px;
+}
+/* =======================================================
+   DISEÑO RESPONSIVE (PARA CELULARES Y TABLETS)
+======================================================= */
+
+@media (max-width: 768px) {
+    
+    /* 1. Ajuste del Logo Giratorio */
+    /* En compu mide 400px, en celular se saldría de la pantalla, así que lo reducimos */
+    .imagen-frente {
+        width: 200px; 
+    }
+    .logo-container {
+        height: 200px; /* Reducimos la altura de la cabecera en móviles */
+    }
+
+    /* 2. Ajuste del Menú de Navegación */
+    /* Apilamos los botones uno debajo de otro para que se puedan tocar fácil con el dedo */
+    nav {
+        width: 90%;
+        padding: 10px 0;
+    }
+    nav a {
+        display: block;
+        margin: 10px auto;
+        padding: 5px 0;
+    }
+
+    /* 3. Ajuste del Carrusel de Inicio */
+    /* Evitamos que el carrusel ocupe toda la pantalla a lo alto */
+    .carrusel-contenedor {
+        height: 250px;
+    }
+
+    /* 4. Ajuste del Catálogo Principal (Grilla) */
+    /* Pasa de 3 columnas a 1 sola columna hacia abajo */
+    .contenedor-catalogo {
+        grid-template-columns: 1fr; 
+        width: 90%;
+    }
+
+    /* 5. Ajuste de las Tarjetas Horizontales de Producto */
+    /* Pasa de (Foto Izq | Texto Der) a (Foto Arriba | Texto Abajo) */
+    .tarjeta-producto-horizontal {
+        flex-direction: column; /* Apila la info verticalmente */
+        text-align: center; /* Centra el texto */
+        padding: 15px;
+    }
+
+    /* Ajustamos el tamaño de la foto para que ocupe todo el ancho de la tarjeta */
+    .imagen-producto-wrapper {
+        flex: none; 
+        width: 100%;
+        height: 250px;
+    }
+
+    /* Centramos el texto y el precio en móviles */
+    .info-producto {
+        text-align: center;
+    }
+    .bloque-precio {
+        justify-content: center; /* Centra el valor y el precio */
+        margin-top: 15px;
+    }
+
+    /* 6. Ajuste del Formulario */
+    /* Aseguramos que las cajas de texto no se salgan de la pantalla */
+    #formulario input, #formulario textarea {
+        width: 100%; 
+        box-sizing: border-box; /* Evita que el padding aumente el ancho total */
+    }
+}
