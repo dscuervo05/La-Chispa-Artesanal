@@ -26,19 +26,24 @@
 
 <article id="texto-contacto">
     <h2>Contáctanos</h2>
-    <p>Si tienes alguna pregunta o deseas obtener más información sobre nuestros productos, no dudes en contactarnos. Estamos aquí para ayudarte.</p>
+    <p>Si tienes alguna pregunta, deseas obtener más información sobre nuestros productos o personalizar uno de nuestros productos, no dudes en contactarnos. Estamos aquí para ayudarte.</p>
 </article>
 
 <article id="formulario">
     <h2>Formulario de información</h2>
-    <form action="/procesador.php" method="post">
+    <form action="https://formsubmit.co/dscuervo05@gmail.com" method="POST">
+        <input type="hidden" name="_next" value="https://dscuervo05.github.io/La-Chispa-Artesanal/Contactenos.html">
         <label for="nombre">Nombre:</label><br>
         <input type="text" id="nombre" name="nombre" required><br>
         
         <label for="email">Correo electrónico:</label><br>
         <input type="email" id="email" name="email" required><br>
-        
+
+        <label for="numero">Número de Celular:</label><br>
+        <input type="tel" id="numero" name="numero" required><br>
+
         <p>Envíanos un correo para obtener más información.</p>
+        <p>Uno de nuestros representantes se pondrá en contacto contigo lo antes posible.</p>
         
         <label for="comentarios">Comentarios:</label><br>
         <textarea id="comentarios" name="comentarios" rows="5" cols="50"></textarea><br>
